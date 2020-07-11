@@ -8,6 +8,55 @@ public class Enemy : MonoBehaviour
     public float health;
     public HealthBar healthbar;
 
+    [SerializeField] protected float speed;
+
+    public GameObject anchor;
+    public GameObject target;
+    public Weapon weapon;
+    public float aimSpeed;
+
+    [SerializeField] protected SpriteRenderer sr;
+    [SerializeField] protected Sprite[] sprites;
+
+    [SerializeField] protected float stateLength; //how long does each state last
+    protected float _maxHealth;
+
+    protected virtual void Start()
+    {
+        _maxHealth = health;
+        healthbar.gameObject.SetActive(false);
+        
+        speed = 0.0f;
+        aimSpeed = 4.0f;
+
+        _state = 0;
+        _hasShot = false;
+    }
+
+    protected virtual void Update()
+    {
+        CountTick();
+        if (_state == 5 && !_hasShot)
+        {
+            _hasShot = true;
+            weapon.Shoot();
+        }
+        if (_state == 0)
+        {
+            _hasShot = false;
+        }
+
+        if (CanSeePlayer())
+        {
+            Aim();
+        }
+        else
+        {
+            //do nothing for now
+            //Debug.Log("no hit");
+        }
+    }
+
     public void TakeDamage(float damage) 
     {
         health -= damage;
@@ -36,7 +85,38 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+    private bool CanSeePlayer()
+    {
+        int layerMask = 1 << LayerMask.NameToLayer("Enemies");
+        layerMask = ~layerMask;
+        Debug.DrawLine(weapon.transform.position, target.transform.position, Color.white, 0.1f);//s e c dur
+        RaycastHit2D hit = Physics2D.Linecast(weapon.transform.position, target.transform.position, layerMask);
+        return (hit.collider.gameObject.layer == 9);
+    }
 
-    public float _maxHealth;
+    private void Aim()
+    {
+        Vector2 direction = target.transform.position - anchor.transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle - 90.0f, Vector3.forward);
+        weapon.transform.rotation = Quaternion.Slerp(weapon.transform.rotation, rotation, aimSpeed * Time.deltaTime);
+    }
+    private void CountTick()
+    {
+        _currentTick -= Time.deltaTime;
+        if (_currentTick <= 0.0f)
+        {
+            _currentTick = stateLength;
+            _state = (_state == 5) ? 0 : _state + 1;
+            UpdateSprite(_state);
+        }
+    }
+    private void UpdateSprite(int spriteIndex)
+    {
+        sr.sprite = sprites[spriteIndex];
+    }
 
+    private float _currentTick;
+    private bool _hasShot;
+    private int _state;
 }
