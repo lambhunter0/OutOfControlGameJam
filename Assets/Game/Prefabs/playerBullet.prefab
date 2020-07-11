@@ -146,4 +146,4 @@ MonoBehaviour:
   moveSpeed: 500
   rb: {fileID: 2399548209912084155}
   direction: {x: 0, y: 0, z: 0}
-  damage: 10
+  damage: 30

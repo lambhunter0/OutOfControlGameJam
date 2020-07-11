@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TurretController : MonoBehaviour
+public class TurretController : Enemy
 {
     public SpriteRenderer sr;
     public GameObject target;
@@ -17,7 +17,9 @@ public class TurretController : MonoBehaviour
     {
         aimSpeed = 4.0f;
         _state = 0;
-        _hasShot = false; 
+        _hasShot = false;
+        _maxHealth = health;
+        healthbar.gameObject.SetActive(false);
     }
 
     void Update()
