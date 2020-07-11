@@ -2,34 +2,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurretController : MonoBehaviour
 {
-    // shoots out raycasts? cone?
-    //state 0: idle
-    //  canon just rotates. if sees player, go to next
-    //state 1, 2, 3: aiming -
-    //if sees player, starts transitioning and tracking. if not, stay at last known position of player and then rotate
-    //state 4: shooting
-    //shoot, then timer
-    //state 5: reloading
-    //timer and track (if not see jsut rotate canon)
 
 
-
-
+    public SpriteRenderer sr;
     public GameObject target;
     public GameObject anchor;
     public GameObject weapon;
     public float aimSpeed;
+    public Sprite[] sprites;
     //canseeplayer bool for sure
     void Start()
     {
         aimSpeed = 4.0f;
+        _state = 0;
     }
 
     void Update()
     {
+        CountTick();
         if (CanSeePlayer())
         {
             Aim();
@@ -41,6 +35,23 @@ public class TurretController : MonoBehaviour
         };
     }
 
+    private void CountTick() 
+    {
+        _currentTick -= Time.deltaTime;
+        if (_currentTick <= 0.0f) 
+        {
+            _currentTick = stateLength;
+            _state = (_state == 5) ? 0 : _state + 1;
+            UpdateSprite(_state);
+        }
+    }
+    private float _currentTick;
+    public float stateLength; //how long does each state last
+
+    private void UpdateSprite(int spriteIndex) 
+    {
+        sr.sprite = sprites[spriteIndex];
+    }
     private bool CanSeePlayer()
     {
         int layerMask = 1 << LayerMask.NameToLayer("Enemies");
@@ -57,4 +68,5 @@ public class TurretController : MonoBehaviour
         Quaternion rotation = Quaternion.AngleAxis(angle - 90.0f, Vector3.forward);
         weapon.transform.rotation = Quaternion.Slerp(weapon.transform.rotation, rotation, aimSpeed * Time.deltaTime);
     }
+    private int _state;
 }
