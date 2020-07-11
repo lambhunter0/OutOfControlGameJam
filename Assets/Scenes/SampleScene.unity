@@ -721,6 +721,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7966909247149750394, guid: 2802f58afc1320e4e94e0dd6cdad3081,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 301773826}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2802f58afc1320e4e94e0dd6cdad3081, type: 3}
 --- !u!1001 &113326263
@@ -2453,6 +2458,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3586493398977352960, guid: 8cc659c6d4fa01d44a40ef01f19574da,
     type: 3}
   m_PrefabInstance: {fileID: 1600929057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &301773826 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3994822027470176183, guid: 937d84695ed059e47bddc1a1ec4b9266,
+    type: 3}
+  m_PrefabInstance: {fileID: 3994822027226598325}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &301773830 stripped
 Transform:
@@ -10138,6 +10149,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7225270337452981488, guid: 8d4bb9017868f8b46815c12e55f2b8c5,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 301773826}
     - target: {fileID: 7225270337452981491, guid: 8d4bb9017868f8b46815c12e55f2b8c5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10675,6 +10691,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drone
       objectReference: {fileID: 0}
+    - target: {fileID: 8340078148399799851, guid: 83aca094a11e14b409c2ef645024426c,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 301773826}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83aca094a11e14b409c2ef645024426c, type: 3}
 --- !u!224 &1202163343 stripped
@@ -15646,6 +15667,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1972062934251610670, guid: 69527ab65c6fad845b1cbdfb3dc91211,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 301773826}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69527ab65c6fad845b1cbdfb3dc91211, type: 3}
 --- !u!1 &1892058881
