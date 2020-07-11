@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.UpArrow)) 
         { 
-            rb.AddForce(transform.up * moveSpeed *Time.deltaTime);
+            rb.AddForce(transform.up * moveSpeed * Time.deltaTime);
             _target = transform.up;
         }
         if (Input.GetKey(KeyCode.DownArrow)) 
@@ -54,6 +56,13 @@ public class PlayerController : MonoBehaviour
         { 
             TryShoot(); 
         }
+
+        //moving up/down + pressing left/right: produces cute weapon wiggle
+        //no wiggle when moving left/right + pressing up/down :( why???
+        Vector2 direction = _target;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle - 90.0f, Vector3.forward);
+        weapon.gameObject.transform.rotation = Quaternion.Slerp(weapon.gameObject.transform.rotation, rotation, 4.0f * Time.deltaTime);
     }
 
     private void ClampRotation() 
