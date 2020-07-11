@@ -35,23 +35,33 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow)) 
         { 
             rb.AddForce(transform.up * moveSpeed * Time.deltaTime);
-            _target = transform.up;
+            _target.x += transform.up.x;
+            _target.y += transform.up.y;
         }
         if (Input.GetKey(KeyCode.DownArrow)) 
         { 
             rb.AddForce(transform.up * -1 * moveSpeed * Time.deltaTime);
-            _target = -transform.up;
+            _target.x += -transform.up.x;
+            _target.y += -transform.up.y;
         }
         if (Input.GetKey(KeyCode.LeftArrow)) 
         { 
             rb.AddForce(transform.right * -1 * moveSpeed * Time.deltaTime);
-            _target = -transform.right;
+            _target.x += -transform.right.x;
+            _target.y += -transform.right.y;
         }
         if (Input.GetKey(KeyCode.RightArrow)) 
         { 
             rb.AddForce(transform.right * moveSpeed * Time.deltaTime);
-            _target = transform.right;
+            _target.x += transform.right.x;
+            _target.y += transform.right.y;
         }
+
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        { 
+            _target.Normalize();
+        }
+
         if (Input.GetKey(KeyCode.Space)) 
         { 
             TryShoot(); 
@@ -62,7 +72,7 @@ public class PlayerController : MonoBehaviour
         Vector2 direction = _target;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle - 90.0f, Vector3.forward);
-        weapon.gameObject.transform.rotation = Quaternion.Slerp(weapon.gameObject.transform.rotation, rotation, 4.0f * Time.deltaTime);
+        weapon.gameObject.transform.rotation = Quaternion.Slerp(weapon.gameObject.transform.rotation, rotation, 40.0f * Time.deltaTime);
     }
 
     private void ClampRotation() 
