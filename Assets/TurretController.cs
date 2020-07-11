@@ -6,12 +6,10 @@ using UnityEngine.UI;
 
 public class TurretController : MonoBehaviour
 {
-
-
     public SpriteRenderer sr;
     public GameObject target;
     public GameObject anchor;
-    public GameObject weapon;
+    public Weapon weapon;
     public float aimSpeed;
     public Sprite[] sprites;
     //canseeplayer bool for sure
@@ -19,14 +17,20 @@ public class TurretController : MonoBehaviour
     {
         aimSpeed = 4.0f;
         _state = 0;
+        _hasShot = false; 
     }
 
     void Update()
     {
         CountTick();
-        if (_state == 5) 
+        if (_state == 5 && !_hasShot) 
         {
-            Shoot();
+            _hasShot = true;
+            weapon.Shoot();
+        }
+        if (_state == 0) 
+        {
+            _hasShot = false;
         }
         if (CanSeePlayer())
         {
@@ -37,11 +41,6 @@ public class TurretController : MonoBehaviour
             //do nothing for now
             Debug.Log("no hit");
         };
-    }
-
-    private void Shoot()
-    {
-        throw new NotImplementedException();
     }
 
     private void CountTick() 
@@ -56,7 +55,7 @@ public class TurretController : MonoBehaviour
     }
     private float _currentTick;
     public float stateLength; //how long does each state last
-
+    private bool _hasShot;
     private void UpdateSprite(int spriteIndex) 
     {
         sr.sprite = sprites[spriteIndex];

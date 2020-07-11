@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public Weapon weapon;
 
     private void Start()
-    {
+    { 
         zero = new Quaternion(0,0,0,0);
         _CanShoot = true;
         _currentTick = shootSpeed;
