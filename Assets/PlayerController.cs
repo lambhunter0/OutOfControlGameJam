@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        zero = new Quaternion(0,0,0,0);
         _CanShoot = true;
         _currentTick = shootSpeed;
     }
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerInput();
         CountTick();
+        ClampRotation();
     }
 
     private void PlayerInput() 
@@ -47,6 +49,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void ClampRotation() 
+    {
+        transform.rotation = zero;
+    }
+
     private void TryShoot() 
     {
         if (_CanShoot)
@@ -72,5 +79,5 @@ public class PlayerController : MonoBehaviour
     private bool _CanShoot;
     public float shootSpeed;//interval between shots if hold down spacebar in seconds
     private Vector2 _target;
-    
+    private Quaternion zero;
 }
