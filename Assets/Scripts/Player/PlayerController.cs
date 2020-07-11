@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_CanShoot)
         {
-            Debug.Log("BANG");
+            weapon.Shoot();
             _CanShoot = false;
             _currentTick = shootSpeed;
         }

@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.layer != 9) 
+        if (collision.collider.gameObject.layer != 9)
         {
             Die();
         }
