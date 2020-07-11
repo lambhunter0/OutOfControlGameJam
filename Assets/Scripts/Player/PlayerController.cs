@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Security.Cryptography;
@@ -12,8 +13,8 @@ public class PlayerController : MonoBehaviour
     public Weapon weapon;
     public Slider healthbar;
     private void Start()
-    { 
-        zero = new Quaternion(0,0,0,0);
+    {
+        zero = new Quaternion(0, 0, 0, 0);
         _CanShoot = true;
         _currentTick = shootSpeed;
         _health = _maxHealth = 100.0f;
@@ -23,48 +24,148 @@ public class PlayerController : MonoBehaviour
         PlayerInput();
         CountTick();
         ClampRotation();
-        if (_health <= 0.0f) 
+        if (_health <= 0.0f)
         {
 
             Debug.Log("ded");
         }
+        CheckDoubleClick();
+        _dashTimer -= Time.deltaTime;
+        if (_dashTimer >= 0.0f) 
+        {
+            radialFill.CurrentValue = (_dashCooldown - _dashTimer) / _dashCooldown;
+        }
+        if (_dashClickTick < 0.0f) 
+        {
+            _isPressed = false;
+            _dashClickTick = _dashClickInterval;
+        }
     }
 
-    private void PlayerInput() 
+    private void CheckDoubleClick()
     {
-        if (Input.GetKey(KeyCode.UpArrow)) 
-        { 
+        if (_isPressed) //if we have pressed previously, count down
+        {
+            _dashClickTick -= Time.deltaTime;
+        }
+        else //get ready for countDown
+        {
+            _dashClickTick = _dashClickInterval;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            CompareLastPressed(KeyCode.DownArrow);
+            _lastPressedArrowKey = KeyCode.DownArrow;
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            CompareLastPressed(KeyCode.UpArrow);
+            _lastPressedArrowKey = KeyCode.UpArrow;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            CompareLastPressed(KeyCode.LeftArrow);
+            _lastPressedArrowKey = KeyCode.LeftArrow;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            CompareLastPressed(KeyCode.RightArrow);
+            _lastPressedArrowKey = KeyCode.RightArrow;
+        }
+    }
+
+    private void CompareLastPressed(KeyCode k)
+    {
+        if (!_isPressed)
+        {
+            _isPressed = true;
+        }
+        else
+        {
+            if (_dashClickTick >= 0.0f && _lastPressedArrowKey == k)//is the click within time and the same?
+            {
+                Dash(k);
+            }
+            else if (_dashClickTick <= 0.0f) //has time ran out
+            {
+                _dashClickTick = _dashClickInterval;
+                _isPressed = false;
+            }
+            else if (_lastPressedArrowKey != k)//different key
+            {
+                
+            }
+        }
+    }
+    private void Dash(KeyCode k)
+    {
+        Debug.Log("dash");
+        if (_dashTimer <= 0.0f)
+        {
+            switch (k)
+            {
+                case KeyCode.UpArrow:
+                    rb.AddForce(transform.up * moveSpeed * 100 * Time.deltaTime);
+                    break;
+                case KeyCode.DownArrow:
+                    rb.AddForce(transform.up * -1 * moveSpeed * 100 * Time.deltaTime);
+                    break;
+                case KeyCode.LeftArrow:
+                    rb.AddForce(transform.right * -1 * moveSpeed * 100 * Time.deltaTime);
+                    break;
+                case KeyCode.RightArrow:
+                    rb.AddForce(transform.right * moveSpeed * 100 * Time.deltaTime);
+                    break;
+                default:
+                    break;
+            }
+            _dashClickTick = _dashClickInterval;
+            _isPressed = false;
+            _dashTimer = _dashCooldown;
+        }
+        else //failed to dash
+        {
+            _dashClickTick = _dashClickInterval;
+            _isPressed = false;
+        }
+    }
+    private void PlayerInput()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
             rb.AddForce(transform.up * moveSpeed * Time.deltaTime);
             _target.x += transform.up.x;
             _target.y += transform.up.y;
         }
-        if (Input.GetKey(KeyCode.DownArrow)) 
-        { 
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
             rb.AddForce(transform.up * -1 * moveSpeed * Time.deltaTime);
             _target.x += -transform.up.x;
             _target.y += -transform.up.y;
         }
-        if (Input.GetKey(KeyCode.LeftArrow)) 
-        { 
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
             rb.AddForce(transform.right * -1 * moveSpeed * Time.deltaTime);
             _target.x += -transform.right.x;
             _target.y += -transform.right.y;
         }
-        if (Input.GetKey(KeyCode.RightArrow)) 
-        { 
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
             rb.AddForce(transform.right * moveSpeed * Time.deltaTime);
             _target.x += transform.right.x;
             _target.y += transform.right.y;
         }
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-        { 
+        {
             _target.Normalize();
         }
 
-        if (Input.GetKey(KeyCode.Space)) 
-        { 
-            TryShoot(); 
+        if (Input.GetKey(KeyCode.Space))
+        {
+            TryShoot();
         }
 
         //moving up/down + pressing left/right: produces cute weapon wiggle
@@ -75,12 +176,12 @@ public class PlayerController : MonoBehaviour
         weapon.gameObject.transform.rotation = Quaternion.Slerp(weapon.gameObject.transform.rotation, rotation, 40.0f * Time.deltaTime);
     }
 
-    private void ClampRotation() 
+    private void ClampRotation()
     {
         transform.rotation = zero;
     }
 
-    private void TryShoot() 
+    private void TryShoot()
     {
         if (_CanShoot)
         {
@@ -90,13 +191,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void CountTick() 
+    private void CountTick()
     {
-        if (!_CanShoot) 
+        if (!_CanShoot)
         {
             _currentTick -= Time.deltaTime;
         }
-        if (_currentTick <= 0.0f) 
+        if (_currentTick <= 0.0f)
         {
             _CanShoot = true;
         }
@@ -124,4 +225,13 @@ public class PlayerController : MonoBehaviour
     public float shootSpeed;//interval between shots if hold down spacebar in seconds
     private Vector2 _target;
     private Quaternion zero;
+
+    [SerializeField] private KeyCode _lastPressedArrowKey;
+    [SerializeField] private float _dashClickInterval = 4.0f;
+    [SerializeField] private float _dashClickTick;
+    [SerializeField] private bool _isPressed = false;
+    [SerializeField] private float _dashCooldown = 3.5f;
+    [SerializeField] private bool _hasDashed  = false;
+    [SerializeField] private float _dashTimer = 0.0f;
+    [SerializeField] private RadialFill radialFill;
 }
