@@ -14,10 +14,6 @@ public class DroneController : Enemy
     {
         base.Start();
 
-        speed = 2.0f;
-        direction = Vector3.right;
-        span = 3.0f;
-
         pos1 = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
         if (direction == Vector3.right)

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,13 +22,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float stateLength; //how long does each state last
     protected float _maxHealth;
 
+    [SerializeField] protected bool aims = true;
+
     protected virtual void Start()
     {
         _maxHealth = health;
         healthbar.gameObject.SetActive(false);
-        
-        speed = 0.0f;
-        aimSpeed = 4.0f;
 
         _state = 0;
         _hasShot = false;
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
             _hasShot = false;
         }
 
-        if (CanSeePlayer())
+        if (aims && CanSeePlayer())
         {
             Aim();
         }

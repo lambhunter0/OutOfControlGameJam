@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
 
     public virtual void Shoot()
     {
-        Bullet instance = Instantiate(bulletPrefab, new Vector3(muzzle1.transform.position.x, muzzle1.transform.position.y, muzzle1.transform.position.z) ,new Quaternion());
+        Bullet instance = Instantiate(bulletPrefab, new Vector3(muzzle1.transform.position.x, muzzle1.transform.position.y, muzzle1.transform.position.z), new Quaternion());
         instance.transform.rotation = muzzle1.transform.rotation;
         instance.damage = this.damage;
     }
