@@ -21,6 +21,13 @@ public class Bullet : MonoBehaviour
     {
         rb.AddForce(transform.up * moveSpeed * Time.deltaTime);
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.layer != 9) 
+        {
+            Die();
+        }
+    }
 
     public void Die() 
     {

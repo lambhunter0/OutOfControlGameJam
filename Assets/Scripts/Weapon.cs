@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
     public GameObject muzzle;
 
     public Bullet bulletPrefab;
-    public void Shoot()
+    public virtual void Shoot()
     {
         Bullet instance = Instantiate(bulletPrefab, new Vector3(muzzle.transform.position.x, muzzle.transform.position.y, muzzle.transform.position.z) ,new Quaternion());
         instance.transform.rotation = muzzle.transform.rotation;
