@@ -39,8 +39,8 @@ public class TurretController : MonoBehaviour
         else
         {
             //do nothing for now
-            Debug.Log("no hit");
-        };
+            //Debug.Log("no hit");
+        }
     }
 
     private void CountTick() 

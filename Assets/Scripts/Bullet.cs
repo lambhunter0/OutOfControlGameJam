@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     public float moveSpeed;
     public Rigidbody2D rb;
     public Vector3 direction;
+    public int damage;
     private void Start()
     {
         
@@ -21,8 +22,8 @@ public class Bullet : MonoBehaviour
         rb.AddForce(transform.up * moveSpeed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void Die() 
     {
-        Debug.Log("WOOOOW");
+        Destroy(this.gameObject);
     }
 }

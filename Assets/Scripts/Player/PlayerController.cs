@@ -1,24 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
     public Rigidbody2D rb;
     public Weapon weapon;
-
+    public Slider healthbar;
     private void Start()
     { 
         zero = new Quaternion(0,0,0,0);
         _CanShoot = true;
         _currentTick = shootSpeed;
+        _health = _maxHealth = 100.0f;
     }
     void Update()
     {
         PlayerInput();
         CountTick();
         ClampRotation();
+        if (_health <= 0.0f) 
+        {
+
+            Debug.Log("ded");
+        }
     }
 
     private void PlayerInput() 
@@ -75,6 +82,24 @@ public class PlayerController : MonoBehaviour
             _CanShoot = true;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.layer == 10)
+        {
+            Bullet b = collision.collider.gameObject.GetComponent<Bullet>();
+            if (b != null)
+            {
+                _health -= (float)b.damage;
+                healthbar.value = _health / _maxHealth;
+                Debug.Log(_health + "/" + _maxHealth);
+                b.Die();
+            }
+        }
+    }
+
+    private float _health;
+    private float _maxHealth;
     private float _currentTick;
     private bool _CanShoot;
     public float shootSpeed;//interval between shots if hold down spacebar in seconds
