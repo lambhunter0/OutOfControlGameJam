@@ -24,6 +24,10 @@ public class TurretController : MonoBehaviour
     void Update()
     {
         CountTick();
+        if (_state == 5) 
+        {
+            Shoot();
+        }
         if (CanSeePlayer())
         {
             Aim();
@@ -33,6 +37,11 @@ public class TurretController : MonoBehaviour
             //do nothing for now
             Debug.Log("no hit");
         };
+    }
+
+    private void Shoot()
+    {
+        throw new NotImplementedException();
     }
 
     private void CountTick() 
