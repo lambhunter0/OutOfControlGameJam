@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour
     protected float _maxHealth;
 
     [SerializeField] protected bool aims = true;
-
     protected virtual void Start()
     {
         _maxHealth = health;
@@ -122,10 +121,23 @@ public class Enemy : MonoBehaviour
 
     public void Die() 
     {
+        GameManager g = GameObject.Find("Game").GetComponent<GameManager>();
         float i = UnityEngine.Random.Range(0.0f, 1.0f);
         if (i > 0.49f) 
-        { 
-            //spawn powerup
+        {
+            float y = UnityEngine.Random.Range(0.0f, 1.0f);
+            if (y < 0.3f)
+            {
+                Instantiate(g.pickups[0], new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), new Quaternion());
+            }
+            else if (y < 0.6f && y > 0.3f)
+            {
+                Instantiate(g.pickups[1], new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), new Quaternion());
+            }
+            else 
+            {
+                Instantiate(g.pickups[2], new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), new Quaternion());
+            }
         }
         Destroy(this.gameObject);
     }
