@@ -41,7 +41,24 @@ public class PlayerController : MonoBehaviour
             _dashClickTick = _dashClickInterval;
         }
     }
-
+    public void ReceivePowerUp(string type, float value) 
+    {
+        switch (type) 
+        {
+            case "health":
+                _health += value;
+                healthbar.value = _health / _maxHealth;
+                break;
+            case "damage":
+                weapon.damage += (int)value;
+                break;
+            case "speed":
+                moveSpeed += value;
+                break;
+            default: 
+                break;
+        }
+    }
     private void CheckDoubleClick()
     {
         if (_isPressed) //if we have pressed previously, count down
