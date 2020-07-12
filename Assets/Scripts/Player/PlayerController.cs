@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public Weapon weapon;
     public Slider healthbar;
+    public GameObject loseScreen;
     private void Start()
     {
         zero = new Quaternion(0, 0, 0, 0);
@@ -19,26 +20,36 @@ public class PlayerController : MonoBehaviour
         _currentTick = shootSpeed;
         _health = _maxHealth = 100.0f;
     }
+    private bool _isLoseShow = false;
     void Update()
     {
-        PlayerInput();
-        CountTick();
-        ClampRotation();
-        if (_health <= 0.0f)
+        if (!_isLoseShow) 
         {
+            PlayerInput();
+            CountTick();
+            ClampRotation();
+            if (_health <= 0.0f)
+            {
+                Time.timeScale = 0;
+                Debug.Log("ded");
+                _isLoseShow = true;
+            }
 
-            Debug.Log("ded");
+            CheckDoubleClick();
+            _dashTimer -= Time.deltaTime;
+            if (_dashTimer >= 0.0f)
+            {
+                radialFill.CurrentValue = (_dashCooldown - _dashTimer) / _dashCooldown;
+            }
+            if (_dashClickTick < 0.0f)
+            {
+                _isPressed = false;
+                _dashClickTick = _dashClickInterval;
+            }
         }
-        CheckDoubleClick();
-        _dashTimer -= Time.deltaTime;
-        if (_dashTimer >= 0.0f) 
+        if (_isLoseShow)
         {
-            radialFill.CurrentValue = (_dashCooldown - _dashTimer) / _dashCooldown;
-        }
-        if (_dashClickTick < 0.0f) 
-        {
-            _isPressed = false;
-            _dashClickTick = _dashClickInterval;
+            loseScreen.SetActive(true);
         }
     }
     public void ReceivePowerUp(string type, float value) 
