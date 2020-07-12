@@ -487,6 +487,11 @@ PrefabInstance:
       propertyPath: stateLength
       value: 1.1
       objectReference: {fileID: 0}
+    - target: {fileID: 7966909247149750394, guid: 2802f58afc1320e4e94e0dd6cdad3081,
+        type: 3}
+      propertyPath: health
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2802f58afc1320e4e94e0dd6cdad3081, type: 3}
 --- !u!114 &389170948 stripped
@@ -844,6 +849,11 @@ PrefabInstance:
       propertyPath: stateLength
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 8340078148399799851, guid: 83aca094a11e14b409c2ef645024426c,
+        type: 3}
+      propertyPath: health
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83aca094a11e14b409c2ef645024426c, type: 3}
 --- !u!114 &867768989 stripped
@@ -993,6 +1003,11 @@ PrefabInstance:
         type: 3}
       propertyPath: stateLength
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225270337452981488, guid: 8d4bb9017868f8b46815c12e55f2b8c5,
+        type: 3}
+      propertyPath: health
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7225270337452981491, guid: 8d4bb9017868f8b46815c12e55f2b8c5,
         type: 3}
@@ -1383,6 +1398,11 @@ PrefabInstance:
       propertyPath: stateLength
       value: 1.1
       objectReference: {fileID: 0}
+    - target: {fileID: 7966909247149750394, guid: 2802f58afc1320e4e94e0dd6cdad3081,
+        type: 3}
+      propertyPath: health
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2802f58afc1320e4e94e0dd6cdad3081, type: 3}
 --- !u!114 &1263940871 stripped
@@ -1612,6 +1632,11 @@ PrefabInstance:
         type: 3}
       propertyPath: stateLength
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340078148399799851, guid: 83aca094a11e14b409c2ef645024426c,
+        type: 3}
+      propertyPath: health
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83aca094a11e14b409c2ef645024426c, type: 3}
@@ -2202,6 +2227,11 @@ PrefabInstance:
         type: 3}
       propertyPath: stateLength
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225270337452981488, guid: 8d4bb9017868f8b46815c12e55f2b8c5,
+        type: 3}
+      propertyPath: health
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7225270337452981491, guid: 8d4bb9017868f8b46815c12e55f2b8c5,
         type: 3}

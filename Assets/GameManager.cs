@@ -55,4 +55,8 @@ public class GameManager : MonoBehaviour
     {
         Application.LoadLevel(5);
     }
+    public void LoadWin() 
+    { 
+    
+    }
 }

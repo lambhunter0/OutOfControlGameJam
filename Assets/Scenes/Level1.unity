@@ -1309,7 +1309,7 @@ PrefabInstance:
     - target: {fileID: 7225270337452981488, guid: 8d4bb9017868f8b46815c12e55f2b8c5,
         type: 3}
       propertyPath: health
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7225270337452981491, guid: 8d4bb9017868f8b46815c12e55f2b8c5,
         type: 3}
@@ -1388,7 +1388,7 @@ PrefabInstance:
     - target: {fileID: 7225270337452981488, guid: 8d4bb9017868f8b46815c12e55f2b8c5,
         type: 3}
       propertyPath: health
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7225270337452981491, guid: 8d4bb9017868f8b46815c12e55f2b8c5,
         type: 3}
@@ -1926,7 +1926,7 @@ PrefabInstance:
     - target: {fileID: 7225270337452981488, guid: 8d4bb9017868f8b46815c12e55f2b8c5,
         type: 3}
       propertyPath: health
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7225270337452981491, guid: 8d4bb9017868f8b46815c12e55f2b8c5,
         type: 3}
@@ -2261,7 +2261,7 @@ PrefabInstance:
     - target: {fileID: 1972062934251610670, guid: 69527ab65c6fad845b1cbdfb3dc91211,
         type: 3}
       propertyPath: health
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69527ab65c6fad845b1cbdfb3dc91211, type: 3}
@@ -2280,7 +2280,7 @@ PrefabInstance:
     - target: {fileID: 7225270337452981488, guid: 8d4bb9017868f8b46815c12e55f2b8c5,
         type: 3}
       propertyPath: health
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7225270337452981491, guid: 8d4bb9017868f8b46815c12e55f2b8c5,
         type: 3}
@@ -3384,7 +3384,7 @@ PrefabInstance:
     - target: {fileID: 1972062934251610670, guid: 69527ab65c6fad845b1cbdfb3dc91211,
         type: 3}
       propertyPath: health
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69527ab65c6fad845b1cbdfb3dc91211, type: 3}
