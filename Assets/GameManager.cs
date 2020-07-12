@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public Enemy[] numberOne;
     private int _enemiesLeft;
     public GameObject winScreen;
+    public Pickup[] pickups = new Pickup[3];
     void Start()
     {
         if (numberOne != null)
