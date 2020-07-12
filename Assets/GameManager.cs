@@ -4,16 +4,31 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Enemy[] numberOne;
+    private int _enemiesLeft;
+    public GameObject winScreen;
     void Start()
     {
-        
+        if (numberOne != null)
+        {
+            _enemiesLeft = numberOne.Length;
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        int count = 0;
+        foreach (Enemy e in numberOne) 
+        {
+            if (e == null) 
+            {
+                count++;
+            }
+        }
+        if (count == _enemiesLeft) 
+        {
+            winScreen.SetActive(true);
+        }
     }
 
     public void ReloadLevel() 
@@ -27,7 +42,7 @@ public class GameManager : MonoBehaviour
         Application.LoadLevel(1);
     }
 
-    public void LaodLevel1() 
+    public void LoadLevel1() 
     {
         Application.LoadLevel(2);
     }

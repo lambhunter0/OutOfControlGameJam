@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -116,9 +117,9 @@ public class Enemy : MonoBehaviour
         sr.sprite = sprites[spriteIndex];
     }
 
-    private void Die() 
+    public void Die() 
     {
-        float i = Random.Range(0.0f, 1.0f);
+        float i = UnityEngine.Random.Range(0.0f, 1.0f);
         if (i > 0.49f) 
         { 
             //spawn powerup
