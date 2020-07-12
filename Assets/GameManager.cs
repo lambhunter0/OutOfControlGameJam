@@ -21,4 +21,9 @@ public class GameManager : MonoBehaviour
         Application.LoadLevel(Application.loadedLevel);
         Time.timeScale = 1.0f;
     }
+
+    public void LoadMainMenu() 
+    {
+        Application.LoadLevel(1);
+    }
 }
