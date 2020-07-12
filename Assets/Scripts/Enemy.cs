@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour
         }
         if (health <= 0.0f) 
         {
-            Destroy(this.gameObject);
+            Die();
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -116,6 +116,15 @@ public class Enemy : MonoBehaviour
         sr.sprite = sprites[spriteIndex];
     }
 
+    private void Die() 
+    {
+        float i = Random.Range(0.0f, 1.0f);
+        if (i > 0.49f) 
+        { 
+            //spawn powerup
+        }
+        Destroy(this.gameObject);
+    }
     private float _currentTick;
     private bool _hasShot;
     private int _state;
