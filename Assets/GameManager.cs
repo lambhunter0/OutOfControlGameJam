@@ -26,4 +26,9 @@ public class GameManager : MonoBehaviour
     {
         Application.LoadLevel(1);
     }
+
+    public void LaodLevel1() 
+    {
+        Application.LoadLevel(2);
+    }
 }
