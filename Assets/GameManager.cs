@@ -40,23 +40,27 @@ public class GameManager : MonoBehaviour
 
     public void LoadMainMenu() 
     {
-        Application.LoadLevel(1);
+        Application.LoadLevel(0);
     }
 
     public void LoadLevel1() 
     {
-        Application.LoadLevel(2);
+        Application.LoadLevel(1);
     }
     public void LoadLevel2()
     {
-        Application.LoadLevel(3);
+        Application.LoadLevel(2);
     }
     public void LoadControls()
     {
-        Application.LoadLevel(5);
+        Application.LoadLevel(4);
+    }
+    public void LoadLevel3() 
+    {
+        Application.LoadLevel(3);
     }
     public void LoadWin() 
     { 
-    
+        
     }
 }

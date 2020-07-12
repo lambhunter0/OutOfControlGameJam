@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: damage
-  value: 5
+  value: 6
   sr: {fileID: 958833290113915008}
 --- !u!212 &958833290113915008
 SpriteRenderer:
@@ -194,7 +194,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 4348d6d3598fae04783b76d5747d78db, type: 3}
   m_Color: {r: 0.9245283, g: 0.5623111, b: 0.30962977, a: 1}
   m_FlipX: 0

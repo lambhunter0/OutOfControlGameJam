@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: speed
-  value: 250
+  value: 750
   sr: {fileID: 4536924315432067111}
 --- !u!212 &4536924315432067111
 SpriteRenderer:

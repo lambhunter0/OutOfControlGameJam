@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: health
-  value: 100
+  value: 40
   sr: {fileID: 369936261488919818}
 --- !u!212 &369936261488919818
 SpriteRenderer:
