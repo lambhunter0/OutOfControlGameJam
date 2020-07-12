@@ -852,7 +852,16 @@ MonoBehaviour:
   rb: {fileID: 3984671879521036918}
   weapon: {fileID: 831918528911880068}
   healthbar: {fileID: 8921472997080916315}
+  loseScreen: {fileID: 0}
   shootSpeed: 0.8
+  _lastPressedArrowKey: 0
+  _dashClickInterval: 0.5
+  _dashClickTick: 0
+  _isPressed: 0
+  _dashCooldown: 3.5
+  _hasDashed: 0
+  _dashTimer: 0
+  radialFill: {fileID: 0}
 --- !u!50 &3984671879521036918
 Rigidbody2D:
   serializedVersion: 4

@@ -40,7 +40,10 @@ public class Enemy : MonoBehaviour
         if (_state == 5 && !_hasShot)
         {
             _hasShot = true;
-            weapon.Shoot();
+            if(CanSeePlayer())
+            {
+                weapon.Shoot();
+            }
         }
         if (_state == 0)
         {

@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
         zero = new Quaternion(0, 0, 0, 0);
         _CanShoot = true;
         _currentTick = shootSpeed;
-        _health = _maxHealth = 1000.0f;
+        _health = _maxHealth = 100.0f;
     }
     private bool _isLoseShow = false;
     void Update()
