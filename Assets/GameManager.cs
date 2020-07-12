@@ -47,4 +47,8 @@ public class GameManager : MonoBehaviour
     {
         Application.LoadLevel(2);
     }
+    public void LoadLevel2()
+    {
+        Application.LoadLevel(3);
+    }
 }
