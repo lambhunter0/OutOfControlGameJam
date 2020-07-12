@@ -13,6 +13,12 @@ public class PlayerController : MonoBehaviour
     public Weapon weapon;
     public Slider healthbar;
     public GameObject loseScreen;
+    public AudioSource dashSource;
+    public AudioSource damageSound;
+    public AudioSource playerShoot;
+    public AudioSource pickupSound;
+    public AudioSource deathSound;
+
     private void Start()
     {
         zero = new Quaternion(0, 0, 0, 0);
@@ -33,6 +39,7 @@ public class PlayerController : MonoBehaviour
                 Time.timeScale = 0;
                 Debug.Log("ded");
                 _isLoseShow = true;
+                deathSound.Play();
             }
 
             CheckDoubleClick();
@@ -54,6 +61,7 @@ public class PlayerController : MonoBehaviour
     }
     public void ReceivePowerUp(string type, float value) 
     {
+        pickupSound.Play();
         switch (type) 
         {
             case "health":
@@ -149,6 +157,7 @@ public class PlayerController : MonoBehaviour
                 default:
                     break;
             }
+            dashSource.Play();
             _dashClickTick = _dashClickInterval;
             _isPressed = false;
             _dashTimer = _dashCooldown;
@@ -213,6 +222,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_CanShoot)
         {
+            playerShoot.Play();
             weapon.Shoot();
             _CanShoot = false;
             _currentTick = shootSpeed;
@@ -239,6 +249,7 @@ public class PlayerController : MonoBehaviour
             if (b != null)
             {
                 _health -= (float)b.damage;
+                damageSound.Play();
                 healthbar.value = _health / _maxHealth;
                 Debug.Log(_health + "/" + _maxHealth);
                 b.Die();

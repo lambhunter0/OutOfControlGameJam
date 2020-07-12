@@ -11,7 +11,10 @@ public class Enemy : MonoBehaviour
     public HealthBar healthbar;
 
     [SerializeField] protected float speed;
-
+    public AudioSource aS;
+    public AudioSource shotSound;
+    public AudioSource hitSound;
+    public AudioSource deathSound;
     public GameObject anchor;
     public GameObject target;
     public Weapon weapon;
@@ -42,6 +45,7 @@ public class Enemy : MonoBehaviour
             if(CanSeePlayer())
             {
                 weapon.Shoot();
+                shotSound.Play();
             }
         }
         if (_state == 0)
@@ -72,6 +76,7 @@ public class Enemy : MonoBehaviour
         }
         if (health <= 0.0f) 
         {
+            deathSound.Play();
             Die();
         }
     }
@@ -82,6 +87,7 @@ public class Enemy : MonoBehaviour
             Bullet b = collision.collider.gameObject.GetComponent<Bullet>();
             if (b != null)
             {
+                hitSound.Play();
                 TakeDamage(b.damage);
                 Debug.Log("ouch");
                 b.Die();
@@ -111,6 +117,10 @@ public class Enemy : MonoBehaviour
         {
             _currentTick = stateLength;
             _state = (_state == 5) ? 0 : _state + 1;
+            if (aS.clip != null)
+            {
+                aS.Play();
+            }
             UpdateSprite(_state);
         }
     }

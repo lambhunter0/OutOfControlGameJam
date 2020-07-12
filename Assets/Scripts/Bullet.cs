@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rb;
     public Vector3 direction;
     public int damage;
+    public AudioSource sound;
     private void Start()
     {
         
@@ -31,6 +32,7 @@ public class Bullet : MonoBehaviour
 
     public void Die() 
     {
+        sound.Play();
         Destroy(this.gameObject);
     }
 }
